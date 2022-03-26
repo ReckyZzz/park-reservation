@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miniprogram.mapper.OrderMapper">
+    <select id="getOrderById" resultType="com.miniprogram.pojo.Order">
+        SELECT * FROM tb_order WHERE order_id=#{orderId}
+    </select>
+    <select id="hasOrderHereToday" resultType="com.miniprogram.pojo.Order">
+        SELECT * FROM tb_order WHERE open_id=#{openId} AND park_id=#{parkId} AND reserve_time>=#{today}
+        AND status!=2 AND status!=3
+    </select>
+    <select id="getOrderToday" resultType="com.miniprogram.pojo.Order">
+        SELECT * FROM tb_order WHERE open_id=#{openId} AND reserve_time>=#{today} AND status!=2 AND status!=3
+    </select>
+    <select id="getOrdersByUser" resultType="com.miniprogram.pojo.Order">
+        SELECT * FROM tb_order WHERE open_id=#{openId} ORDER BY reserve_time DESC
+    </select>
+    <select id="getOrdersToday" resultType="com.miniprogram.pojo.Order">
+        SELECT * FROM tb_order WHERE park_id=#{parkId} AND reserve_time>=#{today} AND status!=2 AND status!=3
+    </select>
+    <insert id="insert">
+        INSERT INTO tb_order(open_id,car_id,model_id,park_id,cord_x,cord_y,space_name,reserve_time)
+        VALUES (#{openId},#{carId},#{modelId},#{parkId},#{cordX},#{cordY},#{spaceName},#{reserveTime})
+    </insert>
+    <update id="resetOrders">
+        UPDATE tb_order SET status=3 WHERE reserve_time &lt; #{today} AND in_time IS NULL AND status!=3
+        AND park_id=#{parkId}
+    </update>
+    <update id="cancelOrder">
+        UPDATE tb_order SET status=3 WHERE order_id=#{orderId}
+    </update>
+    <update id="setInTime">
+        UPDATE tb_order SET in_time=#{inTime},status=1 WHERE order_id=#{orderId}
+    </update>
+    <update id="setOutTime">
+        UPDATE tb_order SET out_time=#{outTime},status=2 WHERE order_id=#{orderId}
+    </update>
+    <update id="setCost">
+        UPDATE tb_order SET cost=#{cost} WHERE order_id=#{orderId}
+    </update>
+</mapper>
