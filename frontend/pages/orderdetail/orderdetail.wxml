@@ -1,0 +1,80 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">订单详情</view>
+</cu-custom>
+<view class="cu-list menu">
+  <view class="cu-item">
+		<view class="content">停车场</view>
+		<view class="action">
+			<text class="text-grey">{{orderDetail.parkName}}</text>
+    </view>
+  </view>
+  <view class="cu-item">
+		<view class="content">车牌号</view>
+		<view class="action">
+			<text class="text-grey">{{orderDetail.carId}}</text>
+    </view>
+  </view>
+	<view class="cu-item">
+		<view class="content">预约车位</view>
+		<view class="action">
+			<text class="text-grey">{{orderDetail.spaceName}}</text>
+		</view>
+	</view>
+	<view class="cu-item">
+		<view class="content">预约时间</view>
+		<view class="action">
+			<text class="text-grey">{{orderDetail.reserveTimeString}}</text>
+		</view>
+	</view>
+
+	<view class="cu-item">
+		<view class="content">预约状态</view>
+		<view class="action">
+			<block wx:if="{{orderDetail.status==0}}"><!--待使用-->
+        <text class="text-blue">{{orderDetail.statusString}}</text>
+      </block>
+      <block wx:if="{{orderDetail.status==1}}"><!--使用中-->
+        <text class="text-yellow">{{orderDetail.statusString}}</text>
+      </block>
+      <block wx:if="{{orderDetail.status==2}}"><!--已完成-->
+        <text class="text-green">{{orderDetail.statusString}}</text>
+      </block>
+      <block wx:elif="{{orderDetail.status==3}}"><!--已取消-->
+        <text class="text-grey">{{orderDetail.statusString}}</text>
+      </block>
+			<!-- <text class="text-grey">{{orderDetail.statusString}}</text> -->
+		</view>
+	</view>
+	<view class="cu-item" wx:if="{{orderDetail.inTime!=null}}">
+		<view class="content">进入时间</view>
+		<view class="action">
+			<text class="text-grey">{{orderDetail.inTimeString}}</text>
+		</view>
+	</view>
+	<view class="cu-item" wx:if="{{orderDetail.outTime!=null}}">
+		<view class="content">离开时间</view>
+		<view class="action">
+			<text class="text-grey">{{orderDetail.outTimeString}}</text>
+		</view>
+	</view>
+	<view class="cu-item" wx:if="{{orderDetail.cost!=null}}">
+		<view class="content">费用</view>
+		<view class="action">
+			<text class="text-grey">{{orderDetail.cost}}元</text>
+		</view>
+	</view>
+</view>
+<view class="cu-bar bg-white solid-bottom margin-top" wx:if="{{orderDetail.status==0}}">
+	<view class="action">
+		<text class="cuIcon-title text-green"/> 请在进入停车场时出示下方二维码
+	</view>
+</view>
+<view class="cu-bar bg-white solid-bottom margin-top" wx:if="{{orderDetail.status==1}}">
+	<view class="action">
+		<text class="cuIcon-title text-green"/> 请在离开停车场时出示下方二维码
+	</view>
+</view>
+<view>
+	<canvas class='canvas' style="width:{{code_w}}px; height:{{code_w}}px;" canvas-id='canvas' bindlongtap='save' bindtap="showQrcode"></canvas>
+</view>

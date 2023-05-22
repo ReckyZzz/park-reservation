@@ -1,0 +1,102 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">上传停车场</view>
+</cu-custom>
+<form catchsubmit="formSubmit">
+  <view class="cu-form-group">
+		<view class="title">停车场名称</view>
+    <input placeholder="停车场名称" name="name"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">停车位数量</view>
+    <input placeholder="停车位数量" type="number" name="capacity"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">停车费用</view>
+    <input placeholder="费用" type="number" name="price"></input>
+    <text>元/小时</text>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">地址</view>
+		<textarea placeholder="地址" value="{{location.address}}"></textarea>
+		<button class="cu-btn bg-green shadow rightBtn" bindtap="toChoose">选择地址</button>
+  </view>
+  <view class="cu-bar bg-white margin-top-xs">
+		<view class="action">
+			设计图
+		</view>
+	</view>
+	<view class="cu-form-group">
+		<view class="grid col-4 grid-square flex-sub">
+			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<1}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+  </view>
+  <view class="text-center">
+    <button class="cu-btn bg-green shadow" form-type="submit">提交</button>
+  </view>
+</form>
+<view class="cu-modal {{modalName=='choose'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">提示</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      请选择地址！
+    </view>
+  </view>
+</view>
+<view class="cu-modal {{modalName=='info'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">提示</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      请填写完整信息！
+    </view>
+  </view>
+</view>
+<view class="cu-modal {{modalName=='upload'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">提示</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      请上传设计图！
+    </view>
+  </view>
+</view>
+<view class="cu-modal {{modalName=='success'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">提示</view>
+      <view class="action" bindtap="goBack">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      上传成功！
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn bg-green margin-left" bindtap="goBack">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

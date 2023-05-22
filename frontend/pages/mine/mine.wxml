@@ -1,0 +1,114 @@
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content">我的</view>
+</cu-custom>
+<view>
+  <block wx:if="{{hasUserInfo}}">
+    <view class="center">
+      <view class="padding flex-direction">
+        <image class="cu-avatar xl round" src="{{userInfo.avatarUrl}}"></image>
+      </view>
+      <text class="text-red text-center">{{userInfo.nickName}}</text>
+      <view>
+        <block wx:if="{{hasCarId == true}}">
+          <text class="text-grey text-center">车牌号：{{carId}}</text>
+        </block>
+        <block wx:else>
+          <text class="text-grey text-center">尚未绑定车牌号</text>
+        </block>
+      </view>
+    </view>
+  </block>
+  <block wx:elif="!{{hasUserInfo}}">
+    <view class="padding flex flex-direction">
+      <button bindtap="login" class="cu-btn bg-red margin-tb-sm lg">登录</button>
+    </view>
+  </block>
+
+  <view class="cu-list menu card-menu margin-top">
+    <view class="cu-item arrow" bindtap="toOrder">
+      <view class="content">
+        <text class="cuIcon-calendar text-cyan"></text>
+        <text class="text-grey">我的预订</text>
+      </view>
+    </view>
+    <block wx:if="{{hasCarId == true}}">
+      <view class="cu-item arrow" bindtap="showUnbind">
+        <view class="content">
+          <text class="cuIcon-unlock text-red"></text>
+          <text class="text-grey">解绑车牌</text>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="cu-item arrow" bindtap="toBind">
+        <view class="content">
+          <text class="cuIcon-lock text-red"></text>
+          <text class="text-grey">绑定车牌</text>
+        </view>
+      </view>
+    </block>
+    <view class="cu-item arrow" bindtap="toUpload">
+      <view class="content">
+        <text class="cuIcon-upload text-yellow"></text>
+        <text class="text-grey">上传停车场</text>
+      </view>
+    </view>
+    <view class="cu-item arrow" bindtap="toManage">
+      <view class="content">
+        <text class="cuIcon-circlefill text-orange"></text>
+        <text class="text-grey">管理停车场</text>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="openSetting">
+        <text class="cuIcon-settings text-olive"></text>
+        <text class="text-grey">小程序权限设置</text>
+      </button>
+    </view>
+  </view>
+  <view class="cu-modal {{modalName=='unbind'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white justify-end">
+        <view class="content">解绑车牌</view>
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close text-red"></text>
+        </view>
+      </view>
+      <view class="padding-xl">
+        您确定要解绑车牌吗？ 您当前的车牌号为：{{carId}}
+      </view>
+      <view class="cu-bar bg-white justify-end">
+        <view class="action">
+          <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+          <button class="cu-btn bg-green margin-left" bindtap="unbindCar">确定</button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="cu-modal {{modalName=='unbindSuccess'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white justify-end">
+        <view class="content">提示信息</view>
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close text-red"></text>
+        </view>
+      </view>
+      <view class="padding-xl">
+        解绑成功！
+      </view>
+    </view>
+  </view>
+  <view class="cu-modal {{modalName=='pleaseLogin'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white justify-end">
+        <view class="content">提示信息</view>
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close text-red"></text>
+        </view>
+      </view>
+      <view class="padding-xl">
+        请先登录！
+      </view>
+    </view>
+  </view>  
+</view>

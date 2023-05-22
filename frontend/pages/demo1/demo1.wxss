@@ -1,0 +1,21 @@
+/* pages/demo1/demo1.wxss */
+/* view{
+  width: 200rpx;
+  height:200rpx;
+  font-size: 40rpx;
+  background-color: blue;
+}
+image{
+  box-sizing: border-box;
+  border: 1px solid brown;
+  width: 375px;
+  height: 91px;
+} */
+
+.mapcontainer {
+  height: 100%;
+  overflow: hidden;
+}
+page{
+  height: 100%;
+}

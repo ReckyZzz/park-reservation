@@ -1,0 +1,20 @@
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content">停车预约系统</view>
+</cu-custom>
+<view>
+  <block wx:if="{{hasUserInfo}}">
+    <view class="center">
+      <view class="padding flex-direction">
+        <image class="cu-avatar xl round" src="{{userInfo.avatarUrl}}"></image>
+      </view>
+      <text class="text-red text-center">{{userInfo.nickName}}</text>
+      <button class="cu-btn block line-red lg round midButton" bindtap="getLocation">
+        <text class="cuIcon-search"></text> 查看附近的停车场</button>
+    </view>
+  </block>
+  <block wx:elif="!{{hasUserInfo}}">
+    <view class="padding flex flex-direction">
+      <button bindtap="login" class="cu-btn bg-red margin-tb-sm lg">登录</button>
+    </view>
+  </block>
+</view>

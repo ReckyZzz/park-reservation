@@ -1,0 +1,72 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">停车场管理</view>
+</cu-custom>
+<view class="cu-list menu bg-white margin-top-sm" wx:for="{{parkList}}" wx:key="parkId">
+  <view class="content">
+    <view>
+      <text class="text-lg margin-left-sm">停车场编号：{{item.parkId}}</text>
+      <block wx:if="{{item.status==0}}"><!--待使用-->
+        <text class="right text-blue text-lg">{{item.statusString}}</text>
+      </block>
+      <block wx:if="{{item.status==1}}"><!--使用中-->
+        <text class="right text-yellow text-lg">{{item.statusString}}</text>
+      </block>
+      <block wx:if="{{item.status==2}}"><!--已完成-->
+        <text class="right text-green text-lg">{{item.statusString}}</text>
+      </block>
+      <block wx:elif="{{item.status==3}}"><!--已取消-->
+        <text class="right text-gray text-lg">{{item.statusString}}</text>
+      </block>
+    </view>
+    <view>
+      <view class="text-df text-gray margin-left-lg">
+        <text class="text-olive padding-right-xs" />
+        停车场名称：{{item.parkName}}
+      </view>
+      <view class="text-df text-gray margin-left-lg">
+        <text class="text-olive padding-right-xs" />
+        地址：{{item.address}}
+      </view>
+      <!-- <view class="text-df text-gray margin-left-lg">
+        <text class="text-olive padding-right-xs" />
+        当前车位数量：{{item.parkCapacity}}
+      </view> -->
+      <block wx:if="{{item.mapId==null}}">
+        <view class="text-df text-red margin-left-lg">
+          <text class="text-olive padding-right-xs" />
+          地图待设置
+        </view>
+      </block>
+      <block wx:else>
+        <view class="text-df text-green margin-left-lg">
+          <text class="text-olive padding-right-xs" />
+          地图已设置好
+        </view>
+      </block>
+      <block wx:if="{{item.parkId==2}}">
+        <view class="text-df text-green margin-left-lg">
+          <text class="text-gray padding-right-xs" />
+          已预约车位：{{orderList2.length}}
+        </view>
+      </block>
+      <block wx:else>
+        <view class="text-df text-green margin-left-lg">
+          <text class="text-gray padding-right-xs" />
+          已预约车位：0
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="action">
+    <view class="cu-bar btn-group padding-sm">
+      <button class="cu-btn bg-blue shadow-blur round" bindtap="toDetail" data-id="{{item.parkId}}">管理地图</button>
+      <block wx:if="{{item.mapId!=null}}">
+        <button class="cu-btn bg-green shadow-blur round" bindtap="toSpace" data-id="{{item.parkId}}">管理车位</button>
+      </block>
+      <block wx:if="{{item.mapId==null}}">
+        <button class="cu-btn bg-green shadow-blur round" disabled>管理车位</button>
+      </block>
+    </view>
+  </view>
+</view>

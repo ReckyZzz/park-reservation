@@ -1,0 +1,6 @@
+.box {  
+  margin: 0rpx 0; 
+}
+.action{
+  width: 20%;
+}

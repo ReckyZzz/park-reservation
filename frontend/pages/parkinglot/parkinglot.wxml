@@ -1,0 +1,44 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">停车场列表</view>
+</cu-custom>
+<view class="box">
+  <view class="cu-bar search bg-white">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="搜索停车场" confirm-type="search" bindinput="search" value="{{keywords}}"></input>
+    </view>
+    <view class="action" bindtap="reset">
+      <text class="cuIcon-close"></text>
+      <text>取消</text>
+    </view>
+  </view>
+</view>
+<view class="cu-list menu-avatar">
+  <view class="cu-item" wx:for="{{showparkinglots}}" wx:key="parkId" bindtap="toDetail" data-parkId="{{item.parkId}}">
+    <view class="cu-avatar round lg" style="background-image:url(https://img2020.cnblogs.com/blog/1918311/202104/1918311-20210423211046318-1493244938.png);"></view>
+    <view class="content">
+        <view class="text-grey">{{item.parkName}}</view>
+        <view class="text-gray text-sm flex">
+          <text class="text-cut">
+            <block wx:if="{{item.distance>1000}}"><text class="text-red margin-right-xs"> 距您{{item.distance/1000}}km</text></block>
+            <block wx:else><text class="text-red margin-right-xs"> 距您{{item.distance}}m</text></block>
+            <block wx:if="{{item.parkId==orderDetail.parkId}}"><text class="text-gray margin-left">您在该停车场已有订单</text></block>
+          </text>
+        </view>
+      </view>
+      <view class="action">
+        <block wx:if="{{item.parkCapacity>=10}}">
+          <view class="text-grey text-sm">剩余车位</view>
+            <view class="cu-tag round bg-green sm">{{item.parkCapacity}}</view>
+        </block>
+        <block wx:elif="{{item.parkCapacity<10 && item.parkCapacity>0}}">
+          <view class="text-grey text-sm">剩余车位</view>
+          <view class="cu-tag round bg-red sm">{{item.parkCapacity}}</view>
+        </block>
+        <block wx:elif="{{item.parkCapacity==0}}">
+          <view class="text-red text-sm">暂无车位</view>
+        </block>
+      </view>
+  </view>
+</view>

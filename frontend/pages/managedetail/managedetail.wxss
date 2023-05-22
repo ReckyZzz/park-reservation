@@ -1,0 +1,3 @@
+.rightBtn{
+  width: 180rpx !important;
+}

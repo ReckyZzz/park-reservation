@@ -1,0 +1,73 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/mine/mine",
+    "pages/demo1/demo1",
+    "pages/bindcar/bindcar",
+    "pages/parkinglot/parkinglot",
+    "pages/parkingdetail/parkingdetail",
+    "pages/reservesuccess/reservesuccess",
+    "pages/myorder/myorder",
+    "pages/orderdetail/orderdetail",
+    "pages/upload/upload",
+    "pages/manage/manage",
+    "pages/managedetail/managedetail"
+  ],
+  "subPackages": [
+    {
+      "root": "bigPackage",
+      "pages": [
+        "pages/managespace/managespace",
+        "pages/map/map",
+        "pages/reservemap/reservemap",
+        "pages/test/test"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationStyle": "custom",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "停车预约系统",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/icon/首页 (1).png",
+        "selectedIconPath": "/icon/首页.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "/icon/我的 (1).png",
+        "selectedIconPath": "/icon/我的.png"
+      }
+    ],
+    "color": "#000000",
+    "selectedColor": "#FF517F"
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "plugins": {
+    "routePlan": {
+      "version": "1.0.12",
+      "provider": "wx50b5593e81dd937a"
+    },
+    "chooseLocation": {
+      "version": "1.0.6",
+      "provider": "wx76a9a06e5b4e693e"
+    }
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序定位"
+    }
+  }
+}

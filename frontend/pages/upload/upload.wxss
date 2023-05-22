@@ -1,0 +1,6 @@
+.cu-form-group .title {
+  min-width: calc(4em + 30rpx);
+}
+.rightBtn{
+  width: 180rpx !important;
+}

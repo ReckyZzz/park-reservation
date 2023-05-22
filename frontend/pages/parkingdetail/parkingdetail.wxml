@@ -1,0 +1,107 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">停车场详情</view>
+</cu-custom>
+<view>
+    <view class="padding center flex-direction">
+      <image class="cu-avatar xl round" src="https://img2020.cnblogs.com/blog/1918311/202104/1918311-20210423211046318-1493244938.png">
+      </image>
+    </view>
+    <view class="box">
+      <view class="cu-bar bg-white">
+        <view class="action title-style-3">
+          <text class="text-xl text-bold">停车场名称</text>
+          <text class="text-Abc text-grey self-end margin-left-sm">{{parkDetail.parkName}}</text>
+        </view>
+      </view>
+      <view class="cu-bar bg-white">
+        <view class="action title-style-3">
+          <text class="text-xl text-bold">停车场地址</text>
+          <text class="text-Abc text-grey self-end margin-left-sm">{{parkDetail.address}}</text>
+        </view>
+      </view>
+      <view class="cu-bar bg-white">
+        <view class="action title-style-3">
+          <text class="text-xl text-bold">停车费用</text>
+          <text class="text-Abc text-grey self-end margin-left-sm">{{parkDetail.price}}元/小时</text>
+        </view>
+      </view>
+      <view class="cu-bar bg-white">
+        <view class="action title-style-3">
+          <text class="text-xl text-bold">该停车场距您</text>
+          <block wx:if="distance>1000">
+            <text class="text-Abc text-grey self-end margin-left-sm">{{parkDetail.distance/1000}}km</text>
+          </block>
+          <block wx:else>
+            <text class="text-Abc text-grey self-end margin-left-sm">{{parkDetail.distance}}m</text>
+          </block>
+        </view>
+      </view>
+      <view class="cu-bar bg-white">
+        <view class="action title-style-3">
+          <text class="text-xl text-bold">剩余车位数量</text>
+          <block wx:if="{{parkDetail.parkCapacity>=10}}">
+            <text class="text-Abc text-green self-end margin-left-sm">{{parkDetail.parkCapacity}}</text>
+          </block>
+          <block wx:elif="{{parkDetail.parkCapacity<10 && parkDetail.parkCapacity>0}}">
+            <text class="text-Abc text-red self-end margin-left-sm">{{parkDetail.parkCapacity}}</text>
+          </block>
+          <block wx:else>
+            <text class="text-Abc text-red self-end margin-left-sm">暂无车位</text>
+          </block>
+        </view>
+      </view>
+    </view>
+    <view class="box">
+      <view class="cu-bar btn-group">
+        <block wx:if="{{parkDetail.parkCapacity>0}}"> <!--停车场有车位-->
+          <button class="cu-btn bg-blue shadow-blur round lg" bindtap="toPark">导航到该停车场</button>
+          <block wx:if="{{hasOrderHere==true}}"><!--已有订单-->
+            <button class="cu-btn bg-green shadow-blur round lg" bindtap="toMap">查看车位路线</button>
+          </block>
+          <block wx:elif="{{otherOrder.parkId!=parkDetail.parkId && otherOrder!= null}}"> <!--在其他停车场已有订单-->
+            <button class="cu-btn bg-green shadow-blur round lg" bindtap="toReserve" disabled>预约车位</button>
+          </block>
+          <block wx:else>
+            <button class="cu-btn bg-green shadow-blur round lg" bindtap="toReserve">预约车位</button>
+          </block>
+        </block>
+        <block wx:else><!--停车场无车位-->
+          <button class="cu-btn bg-blue shadow-blur round lg" bindtap="toPark">导航到该停车场</button>
+          <block wx:if="{{hasOrderHere==true}}"><!--已有订单-->
+            <button class="cu-btn bg-green shadow-blur round lg" bindtap="toMap">查看车位路线</button>
+          </block>
+          <block wx:else><!--无订单-->
+            <button class="cu-btn bg-green shadow-blur round lg" bindtap="reserve" disabled>预约车位</button>
+          </block>
+        </block>
+      </view>
+      <view>
+        <!--在其他停车场已有订单-->
+        <block wx:if="{{otherOrder.parkId!=parkDetail.parkId && otherOrder!= null}}">
+          <text class="text-red center">您在其他停车场已有订单，不能再预定此停车场的车位！</text>
+          <text class="text-red center">若想预约此停车场车位，请先取消其他停车场的订单</text>
+        </block>
+      </view>
+    </view>
+
+    <view class="cu-modal {{modalName=='DialogModal'?'show':''}}">
+      <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+          <view class="content">提示信息</view>
+          <view class="action" bindtap="hideModal">
+            <text class="cuIcon-close text-red"></text>
+          </view>
+        </view>
+        <view class="padding-xl">
+          请先绑定车牌号！
+        </view>
+        <view class="cu-bar bg-white justify-end">
+          <view class="action">
+            <button class="cu-btn line-green text-green" bindtap="hideModal">取消</button>
+            <button class="cu-btn bg-green margin-left" bindtap="toBind">确定</button>
+          </view>
+        </view>
+      </view>
+  </view>
+</view>

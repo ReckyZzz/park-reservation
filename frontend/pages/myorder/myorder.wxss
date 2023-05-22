@@ -1,0 +1,4 @@
+.right{
+  margin-right: 5%;
+  float: right;
+}

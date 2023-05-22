@@ -1,0 +1,41 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">绑定车牌号</view>
+</cu-custom>
+<view>
+  <block wx:if="{{hasUserInfo}}">
+    <view class="center">
+      <view class="padding flex-direction">
+        <image class="cu-avatar xl round" src="{{userInfo.avatarUrl}}"></image>
+    </view>
+      <text class="text-red text-center">{{userInfo.nickName}}</text>
+    </view>
+      <form catchsubmit="formSubmit">
+        <view class="cu-form-group margin-tb-sm">
+		      <view class="title">车牌号</view>
+          <input placeholder="请输入车牌号" name="carId" value="{{carId}}"></input>
+        </view>
+        <view>
+          <button class="cu-btn block bg-red lg round margin-tb-xl" form-type="submit">提交</button>
+        </view>
+      </form>
+  </block>
+  <block wx:elif="!{{hasUserInfo}}">
+    <view class="padding flex flex-direction">
+      <button bindtap="login" class="cu-btn bg-red margin-tb-sm lg">登录</button>
+    </view>
+  </block>
+  <view class="cu-modal {{modalName=='Modal'?'show':''}}">
+    <view class="cu-dialog">
+      <view class="cu-bar bg-white justify-end">
+        <view class="content">提示</view>
+        <view class="action" bindtap="hideModal">
+          <text class="cuIcon-close text-red"></text>
+        </view>
+      </view>
+      <view class="padding-xl">
+        您输入的车牌号为无效车牌号
+      </view>
+    </view>
+  </view>
+</view>

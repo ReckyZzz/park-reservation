@@ -1,0 +1,112 @@
+<!--pages/demo1/demo1.wxml-->
+<!-- <text>1</text>
+<text>2</text>
+<view>asdas</view> -->
+<!-- <view>{{msg}}</view>
+<view>
+  <checkbox checked="{{isChecked}}">男</checkbox>
+</view>
+<view wx:for="{{person}}" wx:for-item="item" wx:for-index="index" wx:key="id">
+  id:{{item.id}} -- name:{{item.name}} -- car:{{item.car}}
+</view>
+<view wx:for="{{testFor}}" wx:for-item="value" wx:for-index="key">
+  {{key}} --- {{value}}
+</view> -->
+<!-- <input type="text" bindinput="handleInput" />
+<button bindtap="handleTap" data-parameter="{{1}}" type="primary">点我增加</button>
+<button bindtap="handleTap" data-parameter="{{-1}}" type="warn">点我减少</button>
+<view>------</view>
+<view>
+  {{number}}
+</view> -->
+<!-- <view>
+  rpx
+</view> -->
+<!-- <text user-select="{{true}}">
+  123456
+</text> -->
+<!-- <image src="https://img2020.cnblogs.com/blog/1918311/202104/1918311-20210416212220122-1998828130.png" mode="widthFix"/> -->
+<!-- <navigator url="../demo2/demo2" open-type="redirect">跳转到demo2</navigator> -->
+<!-- <button open-type="contact">contact</button>
+<button open-type="share">share</button>
+<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">getPhoneNumber</button>
+<button bindtap="getUserProfile">getUserProfile</button>
+<button open-type="openSetting">openSetting</button>
+<button open-type="feedback">feedback</button>
+<button bindtap="navigate">导航</button>
+<button bindtap="pay">微信支付</button>
+<!-- <radio-group bindchange="handleRadio"> -->
+  <!-- <radio value="male">男</radio>
+  <radio value="female">女</radio>
+</radio-group>
+<view>你选中的是{{gender}}</view> --> -->
+<!-- <checkbox-group bindchange="handleCheck">
+  <checkbox value="{{item.name}}" wx:for="{{list}}" wx:key="id">{{item.name}}</checkbox>
+</checkbox-group>
+<view>
+  {{testGender}}
+</view> -->
+<!-- <Tabs></Tabs> -->
+<!-- <view>{{msg}}</view> -->
+
+<!--绑定点击事件-->
+<!-- <button bindtap="nearby_search">搜索周边KFC</button>
+<!--地图容器-->
+<!-- <map id="myMap"
+   style="width:100%;height:300px;"
+   longitude="26.07421"
+   latitude="119.29647" scale='16'>
+</map> --> -->
+
+<!-- <view class="box">
+  <view class="cu-bar search bg-white">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="搜索图片、文章、视频123456" confirm-type="search"></input>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-red shadow-blur round sm">搜索</button>
+    </view>
+  </view>
+</view> -->
+<!-- <view class="cu-form-group margin-top">
+		<view class="title">邮件</view>
+		<input placeholder="两字短标题"></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">输入框</view>
+		<input placeholder="三字标题"></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">收货地址</view>
+		<input placeholder="统一标题的宽度"></input>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">收货地址</view>
+		<input placeholder="输入框带个图标"></input>
+		<text class="cuIcon-locationfill text-orange"></text>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">验证码</view>
+		<input placeholder="输入框带个按钮"></input>
+		<button class="cu-btn bg-green shadow">验证码</button>
+	</view>
+	<view class="cu-form-group">
+		<view class="title">手机号码</view>
+		<input placeholder="输入框带标签"></input>
+		<view class="cu-capsule radius">
+			<view class="cu-tag bg-blue">
+				+86
+			</view>
+			<view class="cu-tag line-blue">
+				中国大陆
+			</view>
+		</view>
+	</view> -->
+	<!-- pages/FMMapBasic/index.wxml -->
+<view class="mapcontainer">
+    <!-- 加载地图容器 -->
+    <canvas type="webgl" id="fengMap" style="width: 100%; height: 100%;" disable-scroll bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd"></canvas>
+    <!-- 2d画布 -->
+    <canvas type="2d" id="temp"></canvas>
+</view>

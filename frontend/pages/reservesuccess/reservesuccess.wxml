@@ -1,0 +1,51 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">预订成功</view>
+</cu-custom>
+<view>
+  <view class="padding center flex-direction text-center">
+    <view class="solid-bottom text-xsl padding">
+      <text class="cuIcon-roundcheckfill text-green"></text>
+    </view>
+    <text>预订成功！请于今日之内使用该停车位！</text>
+  </view>
+  <view class="box">
+    <view class="cu-bar bg-white">
+      <view class="action title-style-3">
+        <text class="text-xl text-bold">停车场名称</text>
+        <text class="text-Abc text-grey self-end margin-left-sm">{{parkDetail.parkName}}</text>
+      </view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action title-style-3">
+        <text class="text-xl text-bold">停车位</text>
+        <text class="text-Abc text-grey self-end margin-left-sm">{{spaceName}}</text>
+      </view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action title-style-3">
+        <text class="text-xl text-bold">车牌号</text>
+        <text class="text-Abc text-grey self-end margin-left-sm">{{carId}}</text>
+      </view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action title-style-3">
+        <text class="text-xl text-bold">停车费用</text>
+        <text class="text-Abc text-grey self-end margin-left-sm">{{parkDetail.price}}元/小时</text>
+      </view>
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action title-style-3">
+        <text class="text-xl text-bold">该停车场距您</text>
+        <text class="text-Abc text-grey self-end margin-left-sm">{{distance/1000}}km</text>
+      </view>
+    </view>
+  </view>
+  <view class="box">
+    <view class="cu-bar btn-group">
+      <button class="cu-btn bg-blue shadow-blur round lg" bindtap="toPark">导航到该停车场</button>
+      <button class="cu-btn bg-green shadow-blur round lg" bindtap="toMap">查看车位路线</button>
+    </view>
+    <button class="cu-btn block round bg-white" bindtap="toIndex">回到首页</button>
+  </view>
+</view>

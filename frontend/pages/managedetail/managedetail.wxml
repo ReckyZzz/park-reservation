@@ -1,0 +1,92 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">停车场详情</view>
+</cu-custom>
+<form catchsubmit="formSubmit">
+  <view class="cu-list menu">
+  <view class="cu-item">
+		<view class="content">停车场编号</view>
+		<view class="action">
+			<text class="text-grey">{{parkInfo.parkId}}</text>
+    </view>
+  </view>
+</view>
+  <view class="cu-form-group">
+		<view class="title">停车场名称</view>
+    <input class="margin-left-xl" value="{{parkInfo.parkName}}" name="parkName"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">当前停车位数量</view>
+    <input value="{{parkInfo.parkCapacity}}" type="number" name="parkCapacity"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">最大停车位数量</view>
+    <input value="{{parkInfo.parkCapacity}}" type="number" name="maxCapacity"></input>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">停车费用</view>
+    <input class="margin-left-xl" value="{{parkInfo.price}}" type="number" name="price"></input>
+    <text>元/小时</text>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">地址</view>
+    <block wx:if="{{location==null}}">
+		  <textarea value="{{parkInfo.address}}"></textarea>
+    </block>
+    <block wx:else>
+      <textarea value="{{location.address}}"></textarea>
+    </block>
+		<button class="cu-btn bg-green shadow rightBtn" bindtap="toChoose">选择地址</button>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">蜂鸟地图ID</view>
+    <input value="{{parkInfo.mapId}}" name="mapId"></input>
+  </view>
+  <view class="text-center">
+    <button class="cu-btn bg-green shadow" form-type="submit">提交</button>
+  </view>
+</form>
+<view class="cu-modal {{modalName=='choose'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">提示</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      请选择地址！
+    </view>
+  </view>
+</view>
+<view class="cu-modal {{modalName=='info'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">提示</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      请填写完整信息！
+    </view>
+  </view>
+</view>
+<view class="cu-modal {{modalName=='success'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">提示</view>
+      <view class="action" bindtap="goBack">
+        <text class="cuIcon-close text-red"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      修改成功！
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class="action">
+        <button class="cu-btn bg-green margin-left" bindtap="goBack">确定</button>
+      </view>
+    </view>
+  </view>
+</view>
